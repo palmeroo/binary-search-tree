@@ -28,8 +28,17 @@ static void test_tree_count(void) {
     tree_free(tree);
 }
 
+static void test_tree_height(void) {
+    struct tree_node *tree = setup_tree();
+    int expected = 3;
+    int actual = tree_height(tree);
+    ASSERT(expected == actual);
+    tree_free(tree);
+}
+
 static void run_tests() {
     test_tree_count();
+    test_tree_height();
     printf("\n");
 }
 
@@ -37,7 +46,6 @@ int main(void)
 {
     run_tests();
     struct tree_node *tree = setup_tree();
-    printf("Tree height is %d\n", tree_height(tree));
     printf("Min value is %d\n", tree_min(tree));
     printf("Max value is %d\n", tree_max(tree));
     tree_free(tree);
